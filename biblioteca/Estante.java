@@ -2,7 +2,6 @@
 public class Estante {
     int numero;
 
-
     public Estante(int numero){
         this.numero = numero;
     }
