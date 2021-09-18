@@ -1,6 +1,6 @@
 
 public class Estante {
-    String numero;
+    private String numero;
 
     public String getNumero(){
         return numero;
