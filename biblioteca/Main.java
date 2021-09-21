@@ -9,5 +9,11 @@ class Main {
 
         Estante e1 = new Estante(100);
         e1.statusEstante();
+
+        Conta c1 = new Conta("Raul", "Serrita", "raul123");
+        c1.statusConta();
+
+        Conta c2 = new Conta("Raulzinho", "Serrinha", "raul000");
+        c2.statusConta();
     }
 }
