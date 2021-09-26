@@ -15,5 +15,13 @@ class Main {
 
         Conta c2 = new Conta("Raulzinho", "Serrinha", "raul000");
         c2.statusConta();
+
+        Biblioteca lib1 = new Biblioteca("Lib da cidade", "rua ali em baixo");
+
+        System.out.println(lib1);
+
+        lib1.addConta(c1);
+
+        System.out.println(lib1.getConta(0) == c1);
     }
 }
