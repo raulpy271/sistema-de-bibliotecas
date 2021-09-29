@@ -5,6 +5,7 @@ class Main {
         System.out.println("Digite um comando para o sistema de bibliotecas: \n");
 
         Pessoa p1 = new Pessoa("Andressa", "Avenida Agamenon");
+        p1.setID(0);
         p1.statusPessoa();
 
         Estante e1 = new Estante(100);
@@ -22,6 +23,11 @@ class Main {
 
         lib1.addConta(c1);
 
-        System.out.println(lib1.getConta(0) == c1);
+        lib1.addAutor(p1);
+
+        System.out.println("Resultado da inserção de conta: " + (lib1.getConta(0) == c1));
+
+        System.out.println("Resultado da inserção de autor: " + (lib1.getAutor(0) == p1));
+
     }
 }
