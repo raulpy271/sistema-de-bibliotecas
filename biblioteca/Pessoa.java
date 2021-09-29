@@ -2,10 +2,18 @@
 class Pessoa {
     private String nome;
     private String endereço;
+    private int id;
     
     public Pessoa(String nome, String endereço) {
         this.nome = nome;
         this.endereço = endereço;
+    }
+
+    public int getID() {
+        return this.id;
+    }
+    public void setID(int id) {
+        this.id = id;
     }
 
     public String getNome(){
