@@ -34,6 +34,13 @@ public class Biblioteca {
         return item_found;
     }
 
+    public int createConta(String nome, String endereço, String senha) {
+        Conta conta = new Conta(nome, endereço, senha);
+        int id = conta.getID();
+        this.addConta(conta);
+        return id;
+    }
+
     public void addConta(Conta conta) {
         for (int i = 0; i < MAX_CONTAS; i++) {
             if (this.contasRepo[i] == null) {
