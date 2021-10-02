@@ -11,6 +11,8 @@ class IDGenerator {
 public class Conta extends Pessoa {
     private String senha;
     private static IDGenerator IDContaGen = new IDGenerator();
+    private final int MAX_EMPRESTIMO = 5;
+    private Emprestimo emprestimos[] = new Emprestimo[MAX_EMPRESTIMO];
 
     public Conta(String nome, String end, String senha) {
         super(nome, end);
@@ -20,6 +22,26 @@ public class Conta extends Pessoa {
 
     public void resetSenha(String senha) {
         this.senha = senha;
+    }
+
+    public void addEmprestimo(int itemID) {
+        for (int i = 0; i < MAX_EMPRESTIMO; i++) {
+            if (this.emprestimos[i] == null) {
+                this.emprestimos[i] = new Emprestimo(itemID);
+                return;
+            }
+        }
+    }
+
+    public Emprestimo getEmprestimo(int itemID) {
+        for (int i = 0; i < MAX_EMPRESTIMO; i++) {
+            if (
+                    this.emprestimos[i] != null && 
+                    this.emprestimos[i].itemID == itemID) {
+                return this.emprestimos[i];
+            }
+        }
+        return null;
     }
 
     public void statusConta(){
