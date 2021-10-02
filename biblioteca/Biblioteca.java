@@ -1,4 +1,6 @@
 
+import java.util.Date;
+
 public class Biblioteca {
     private final int MAX_ITEM = 100;
     private final int MAX_CONTAS = 100;
@@ -79,6 +81,28 @@ public class Biblioteca {
             }
         }
         return conta_found;
+    }
+
+    public void checkoutLivro(int itemID, int contaID) {
+        Conta conta = this.getConta(contaID);
+        Item item = this.getItem(itemID);
+        if (item.getStatus() == Status.StatusEnum.DISPONIVEL) {
+            item.setStatus(Status.StatusEnum.EMPRESTADO);
+            conta.addEmprestimo(itemID);
+        } else {
+            throw new RuntimeException("Este item já foi emprestado");
+        }
+    }
+
+    public boolean temAtraso(int itemID, int contaID) {
+        Conta conta = this.getConta(contaID);
+        Emprestimo emprestimo = conta.getEmprestimo(itemID);
+        Date hoje = new Date();
+        if ( Emprestimo.MAX_DIAS_EMPRESTIMOS < Utils.converteMilisegundosParaDias(hoje.getTime() - emprestimo.data.getTime())) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     public String toString() {
