@@ -2,12 +2,14 @@
 import java.util.Date;
 
 public class Biblioteca {
-    private final int MAX_ITEM = 100;
+    private final int MAX_ITENS = 100;
+    private final int MAX_LIVROS = 100;
     private final int MAX_CONTAS = 100;
     private final int MAX_AUTORES = 100;
     private String nome;
     private String endereço;
-    private Item itensRepo[] = new Item[MAX_ITEM];
+    private Item itensRepo[] = new Item[MAX_ITENS];
+    private Livro livrosRepo[] = new Livro[MAX_LIVROS];
     private Conta contasRepo[] = new Conta[MAX_CONTAS];
     private Pessoa autoresRepo[] = new Pessoa[MAX_AUTORES];
 
@@ -16,8 +18,28 @@ public class Biblioteca {
         this.endereço = endereço;
     }
 
+    public void addLivro(Livro livro) {
+        for (int i = 0; i < MAX_LIVROS; i++) {
+            if (this.livrosRepo[i] == null) {
+                this.livrosRepo[i] = livro;
+                return;
+            }
+        }
+    }
+
+    public Livro getLivro(String ISBN) {
+        Livro livro_found = null;
+        for (Livro livro: this.livrosRepo) {
+            if (livro != null && livro.getISBN().equals(ISBN)) {
+                livro_found = livro;
+                break;
+            }
+        }
+        return livro_found;
+    }
+
     public void addItem(Item item_to_insert) {
-        for (int i = 0; i < MAX_ITEM; i++) {
+        for (int i = 0; i < MAX_ITENS; i++) {
             if (this.itensRepo[i] == null) {
                 this.itensRepo[i] = item_to_insert;
                 return;
@@ -113,6 +135,24 @@ public class Biblioteca {
         } else {
             return false;
         }
+    }
+
+    public Livro[] searchLivro(String titulo, String assunto, int ano) {
+        Livro livrosEncontrados[] = new Livro[MAX_LIVROS/2];
+        int livros_adicionados = 0;
+        for (Livro livro : this.livrosRepo) {
+            if (livro != null) {
+                if (
+                        livro.getTitulo().contains(titulo) ||
+                        livro.getPublicacao() == ano ||
+                        Utils.stringEmArray(livro.getCategoria(), assunto)
+                   ) {
+                        livrosEncontrados[livros_adicionados] = livro;
+                        livros_adicionados++;
+                   }
+            }
+        }
+        return livrosEncontrados;
     }
 
     public String toString() {
