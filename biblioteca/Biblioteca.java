@@ -94,9 +94,19 @@ public class Biblioteca {
         }
     }
 
+    public void devolverLivro(int itemID, int contaID) {
+        Conta conta = this.getConta(contaID);
+        Item item = this.getItem(itemID);
+        item.setStatus(Status.StatusEnum.DISPONIVEL);
+        conta.removeEmprestimo(itemID);
+    }
+
     public boolean temAtraso(int itemID, int contaID) {
         Conta conta = this.getConta(contaID);
         Emprestimo emprestimo = conta.getEmprestimo(itemID);
+        if (emprestimo == null) {
+            throw new RuntimeException("Não há emprestimo para este item");
+        }
         Date hoje = new Date();
         if ( Emprestimo.MAX_DIAS_EMPRESTIMOS < Utils.converteMilisegundosParaDias(hoje.getTime() - emprestimo.data.getTime())) {
             return true;

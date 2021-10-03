@@ -33,6 +33,17 @@ public class Conta extends Pessoa {
         }
     }
 
+    public void removeEmprestimo(int itemID) {
+        for (int i = 0; i < MAX_EMPRESTIMO; i++) {
+            if (
+                    this.emprestimos[i] != null && 
+                    this.emprestimos[i].itemID == itemID) {
+                this.emprestimos[i] = null;
+                return;
+            }
+        }
+    }
+
     public Emprestimo getEmprestimo(int itemID) {
         for (int i = 0; i < MAX_EMPRESTIMO; i++) {
             if (
