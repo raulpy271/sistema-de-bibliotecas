@@ -123,6 +123,31 @@ public class Biblioteca {
         conta.removeEmprestimo(itemID);
     }
 
+    public void reservarLivro(int itemID, int contaID) {
+        Item item = this.getItem(itemID);
+        if (item.getStatus() == Status.StatusEnum.EMPRESTADO) {
+            item.setStatus(Status.StatusEnum.RESERVADO);
+            item.setIDContaReservada(contaID);
+        } else {
+            throw new RuntimeException("O item precisa estar emprestado para ser reservado");
+        }
+    }
+
+    public void renovarLivro(int itemID, int contaID) {
+        Conta conta = this.getConta(contaID);
+        Item item = this.getItem(itemID);
+        if (item.getStatus() == Status.StatusEnum.EMPRESTADO) {
+            Emprestimo emprestimo = conta.getEmprestimo(itemID);
+            if (emprestimo != null) {
+                emprestimo.atualizaData();
+            } else {
+                throw new RuntimeException("O item não está emprestado. Precisa fazer checkout antes de renovar");
+            }
+        } else {
+            throw new RuntimeException("O item já foi reservado ou não está disponivel");
+        }
+    }
+
     public boolean temAtraso(int itemID, int contaID) {
         Conta conta = this.getConta(contaID);
         Emprestimo emprestimo = conta.getEmprestimo(itemID);
