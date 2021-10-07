@@ -10,5 +10,9 @@ public class Emprestimo {
        this.data = new Date();
        this.itemID = itemID;
    }
+
+   public void atualizaData() {
+       this.data = new Date();
+   }
 }
 

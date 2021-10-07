@@ -1,12 +1,13 @@
 
 public class Livro {
+    public final static int MAX_CATEGORIAS = 50;
     private String ISBN;
     private String autor;
     private int publicacao;
     private String titulo;
     private int paginas;
     private int numEstante;
-    private String[] categoria = new String[100];
+    private String[] categoria = new String[MAX_CATEGORIAS];
 
     public String getISBN() {
         return ISBN;
