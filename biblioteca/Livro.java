@@ -1,6 +1,7 @@
 
 public class Livro {
     private String ISBN;
+    private String autor;
     private int publicacao;
     private String titulo;
     private int paginas;
@@ -13,6 +14,14 @@ public class Livro {
 
     public void setISBN(String ISBN) {
         this.ISBN = ISBN;
+    }
+
+    public String getAutor() {
+        return autor;
+    }
+
+    public void setAutor(String autor) {
+        this.autor = autor;
     }
 
     public int getPublicacao() {
