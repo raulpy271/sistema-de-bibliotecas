@@ -180,6 +180,14 @@ public class Biblioteca {
         return livrosEncontrados;
     }
 
+    public String getNome() {
+        return this.nome;
+    }
+
+    public String getEnd() {
+        return this.endereço;
+    }
+
     public String toString() {
         return ("Bem-vindo a biblioteca, " + this.nome) + 
                (", estamos no endereço, " + this.endereço + "!\n");
