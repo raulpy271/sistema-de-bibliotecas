@@ -22,7 +22,7 @@ public class Controller {
         String[] comando_e_argumentos = Utils.divideArgumentos(input);
         String comando = comando_e_argumentos[0];
         String[] argumentos = 
-            Arrays.copyOfRange(comando_e_argumentos, 1, comando_e_argumentos.length);
+            Arrays.copyOfRange(comando_e_argumentos, 1, Utils.countNotNull(comando_e_argumentos));
         switch (comando) {
             case Commands.LOGIN:
                 return this.login(argumentos);

@@ -39,4 +39,17 @@ class Utils {
         };
         return result;
     }
+
+    public static int countNotNull(Object[] arr) {
+        int counter = 0;
+        for (Object element: arr) {
+            if (element != null) {
+                counter++;
+            } else {
+                break;
+            }
+        }
+        return counter;
+    }
 }
+
