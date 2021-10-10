@@ -12,10 +12,18 @@ public class Biblioteca {
     private Livro livrosRepo[] = new Livro[MAX_LIVROS];
     private Conta contasRepo[] = new Conta[MAX_CONTAS];
     private Pessoa autoresRepo[] = new Pessoa[MAX_AUTORES];
+    private static IDGenerator autorIDGen = new IDGenerator();
 
     public Biblioteca(String nome, String endereço) {
         this.nome = nome;
         this.endereço = endereço;
+    }
+
+    public int createAutor(String nome, String end) {
+        Pessoa autor = new Pessoa(nome, end);
+        autor.setID(Biblioteca.autorIDGen.gen());
+        this.addAutor(autor);
+        return autor.getID();
     }
 
     public void addLivro(Livro livro) {

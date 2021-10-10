@@ -6,6 +6,18 @@ public class Controller {
         this.biblioteca = biblioteca;
     }
 
+    public String addAutor(String[] argumentos) {
+        int argumentos_necessarios = 2;
+        if (argumentos.length >= argumentos_necessarios) {
+            String nome = argumentos[0];
+            String end = argumentos[1];
+            int autor_id = biblioteca.createAutor(nome, end);
+            return "Autor inserido. id: " + autor_id;
+        } else {
+            return "Não foram adicionados argumentos suficientes";
+        }
+    }
+
     private String login(String[] argumentos) {
         return "login com sucesso";
     }
@@ -30,6 +42,8 @@ public class Controller {
                 return this.search(argumentos);
             case Commands.HELP:
                 return this.help(argumentos);
+            case Commands.ADD_AUTOR:
+                return this.addAutor(argumentos);
             default:
                 return "Comando não disponível. Digite HELP para ajuda.";
         }
