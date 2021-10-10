@@ -7,7 +7,7 @@ LOGIN <nome> <senha>
 # comandos ao estar logado em bibliotecário
 
 ```
-ADICIONAR_LIVRO <isbn> <ano_publicacao> <paginas> <num_estante> <titulo> <categoria_1> ... <categoria_n>  
+ADICIONAR_LIVRO <isbn> <ano_publicacao> <paginas> <num_estante> <autor> <titulo> <categoria_1> ... <categoria_n>  
 
 ADICIONAR_ITEM <isnb> <quantidade>
 ```
