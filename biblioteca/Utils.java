@@ -52,4 +52,3 @@ class Utils {
         return counter;
     }
 }
-

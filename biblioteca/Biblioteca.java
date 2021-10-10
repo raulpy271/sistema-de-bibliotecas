@@ -166,8 +166,11 @@ public class Biblioteca {
         for (Livro livro : this.livrosRepo) {
             if (livro != null) {
                 if (
+<<<<<<< HEAD
                         livro.getTitulo().contains(titulo) ||
                         livro.getAutor().contains(autor) ||
+=======
+>>>>>>> 1a61aba926a381a5cbfbe16a37898213b5ecf6cc
                         ((!titulo.equals("")) && livro.getTitulo().contains(titulo)) ||
                         livro.getPublicacao() == ano ||
                         Utils.stringEmArray(livro.getCategoria(), assunto)
