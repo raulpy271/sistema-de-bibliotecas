@@ -32,7 +32,7 @@ public class Controller {
             String valor_para_pesquisar = argumentos[1];
             switch (tipo) {
                 case "assunto":
-                    Livro[] books = biblioteca.searchLivro("", valor_para_pesquisar, 0);
+                    Livro[] books = biblioteca.searchLivro("", valor_para_pesquisar, "", 0);
                     return View.books(books);
                 default:
                     return "Este tipo de pesquisa não é suportado";
