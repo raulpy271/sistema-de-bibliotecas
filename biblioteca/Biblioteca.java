@@ -5,25 +5,17 @@ public class Biblioteca {
     private final int MAX_ITENS = 100;
     private final int MAX_LIVROS = 100;
     private final int MAX_CONTAS = 100;
-    private final int MAX_AUTORES = 100;
     private String nome;
     private String endereço;
     private Item itensRepo[] = new Item[MAX_ITENS];
     private Livro livrosRepo[] = new Livro[MAX_LIVROS];
     private Conta contasRepo[] = new Conta[MAX_CONTAS];
-    private Pessoa autoresRepo[] = new Pessoa[MAX_AUTORES];
-    private static IDGenerator autorIDGen = new IDGenerator();
 
     public Biblioteca(String nome, String endereço) {
         this.nome = nome;
         this.endereço = endereço;
     }
 
-    public int createAutor(String nome, String end) {
-        Pessoa autor = new Pessoa(nome, end);
-        autor.setID(Biblioteca.autorIDGen.gen());
-        this.addAutor(autor);
-        return autor.getID();
     }
 
     public void addLivro(Livro livro) {
@@ -85,26 +77,6 @@ public class Biblioteca {
     public Conta getConta(int id) {
         Conta conta_found = null;
         for (Conta conta : this.contasRepo) {
-            if (conta != null && conta.getID() == id) {
-                conta_found = conta;
-                break;
-            }
-        }
-        return conta_found;
-    }
-
-    public void addAutor(Pessoa autor) {
-        for (int i = 0; i < MAX_AUTORES; i++) {
-            if (this.autoresRepo[i] == null) {
-                this.autoresRepo[i] = autor;
-                return;
-            }
-        }
-    }
-
-    public Pessoa getAutor(int id) {
-        Pessoa conta_found = null;
-        for (Pessoa conta : this.autoresRepo) {
             if (conta != null && conta.getID() == id) {
                 conta_found = conta;
                 break;
@@ -176,7 +148,7 @@ public class Biblioteca {
         for (Livro livro : this.livrosRepo) {
             if (livro != null) {
                 if (
-                        livro.getTitulo().contains(titulo) ||
+                        ((!titulo.equals("")) && livro.getTitulo().contains(titulo)) ||
                         livro.getPublicacao() == ano ||
                         Utils.stringEmArray(livro.getCategoria(), assunto)
                    ) {
