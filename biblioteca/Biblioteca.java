@@ -16,6 +16,24 @@ public class Biblioteca {
         this.endereço = endereço;
     }
 
+    public void createLivro(
+            String isbn, 
+            int ano_publicacao, 
+            int num_paginas, 
+            int num_estante, 
+            String autor, 
+            String titulo, 
+            String[] categorias
+            ) {
+        Livro livro = new Livro();
+        livro.setISBN(isbn);
+        livro.setAutor(autor);
+        livro.setPublicacao(ano_publicacao);
+        livro.setTitulo(titulo);
+        livro.setPaginas(num_paginas);
+        livro.setNumEstante(num_estante);
+        livro.setCategoria(categorias);
+        this.addLivro(livro);
     }
 
     public void addLivro(Livro livro) {
