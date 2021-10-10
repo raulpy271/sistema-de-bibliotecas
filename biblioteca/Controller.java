@@ -42,6 +42,27 @@ public class Controller {
         }
     }
 
+    public String addUser(String[] argumentos) {
+        int argumentos_necessarios = 4;
+        if (argumentos.length == argumentos_necessarios) {
+            String tipo = argumentos[0];
+            String nome = argumentos[1];
+            String endereco = argumentos[2];
+            String senha = argumentos[3];
+            int user_id = -1;
+            if (tipo.equals("membro")) {
+                user_id = biblioteca.createConta(nome, endereco, senha);
+            } else if (tipo.equals("bibliotecario")) {
+                // Falta tratar caso onde o usuário é bibliotecário
+            } else {
+                return "tipo de usuário não permitido";
+            }
+            return "Usuário adicionado. user_id: " + user_id;
+        } else {
+            return "Não foram adicionados argumentos suficientes";
+        }
+    }
+
     private String login(String[] argumentos) {
         return "login com sucesso";
     }
@@ -64,8 +85,11 @@ public class Controller {
                 return this.help(argumentos);
             case Commands.ADD_LIVRO:
                 return this.addLivro(argumentos);
+            case Commands.ADD_USER:
+                return this.addUser(argumentos);
             default:
                 return "Comando não disponível. Digite HELP para ajuda.";
         }
     }
 }
+

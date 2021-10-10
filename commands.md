@@ -10,6 +10,9 @@ LOGIN <nome> <senha>
 ADICIONAR_LIVRO <isbn> <ano_publicacao> <paginas> <num_estante> <autor> <titulo> <categoria_1> ... <categoria_n>  
 
 ADICIONAR_ITEM <isnb> <quantidade>
+
+ADD_USER <tipo:membro|bibliotecario> <nome> <endereço> <senha>
+
 ```
 
 # comandos ao estar logado em qualquer conta
