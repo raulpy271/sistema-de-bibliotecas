@@ -1,33 +1,35 @@
+import java.util.Scanner;
 
 class Main {
 
+    public static void boasVindas(Biblioteca lib) {
+        System.out.println("Seja bem vindo ao sistema de biblioteca " + lib.getNome() + "!");
+        System.out.println("Digite seus comandos para interagir com o sistema, digite HELP para ajuda, ou EXIT para sair.");
+    }
+
+    public static void despedida() {
+        System.out.println("Até mais, boa leitura!");
+    }
+
     public static void main(String[] args) {
-        System.out.println("Digite um comando para o sistema de bibliotecas: \n");
+        Biblioteca lib = new Biblioteca("da cidade", "av tal");
+        Controller controlador = new Controller(lib);
+        Scanner leitor_de_input = new Scanner(System.in);
+        String input_atual;
+        String resultado_do_input;
 
-        Pessoa p1 = new Pessoa("Andressa", "Avenida Agamenon");
-        p1.setID(0);
-        p1.statusPessoa();
+        Main.boasVindas(lib);
 
-        Estante e1 = new Estante(100);
-        e1.statusEstante();
+        while (true) {
+            System.out.print(" -> ");
+            input_atual = leitor_de_input.nextLine().toLowerCase();
+            if (Utils.contemNoInicio(input_atual, Commands.EXIT)) {
+                break;
+            }
+            resultado_do_input = controlador.lidaComInputDoUsuario(input_atual);
+            System.out.println(resultado_do_input);
+        }
 
-        Conta c1 = new Conta("Raul", "Serrita", "raul123");
-        c1.statusConta();
-
-        Conta c2 = new Conta("Raulzinho", "Serrinha", "raul000");
-        c2.statusConta();
-
-        Biblioteca lib1 = new Biblioteca("Lib da cidade", "rua ali em baixo");
-
-        System.out.println(lib1);
-
-        lib1.addConta(c1);
-
-        lib1.addAutor(p1);
-
-        System.out.println("Resultado da inserção de conta: " + (lib1.getConta(0) == c1));
-
-        System.out.println("Resultado da inserção de autor: " + (lib1.getAutor(0) == p1));
-
+        Main.despedida();
     }
 }

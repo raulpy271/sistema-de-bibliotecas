@@ -1,13 +1,4 @@
 
-class IDGenerator {
-    private int count = -1;
-
-    public int gen() {
-        count++;
-        return count;
-    }
-}
-
 public class Conta extends Pessoa {
     private String senha;
     private static IDGenerator IDContaGen = new IDGenerator();

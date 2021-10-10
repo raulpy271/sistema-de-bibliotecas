@@ -5,17 +5,35 @@ public class Biblioteca {
     private final int MAX_ITENS = 100;
     private final int MAX_LIVROS = 100;
     private final int MAX_CONTAS = 100;
-    private final int MAX_AUTORES = 100;
     private String nome;
     private String endereço;
     private Item itensRepo[] = new Item[MAX_ITENS];
     private Livro livrosRepo[] = new Livro[MAX_LIVROS];
     private Conta contasRepo[] = new Conta[MAX_CONTAS];
-    private Pessoa autoresRepo[] = new Pessoa[MAX_AUTORES];
 
     public Biblioteca(String nome, String endereço) {
         this.nome = nome;
         this.endereço = endereço;
+    }
+
+    public void createLivro(
+            String isbn, 
+            int ano_publicacao, 
+            int num_paginas, 
+            int num_estante, 
+            String autor, 
+            String titulo, 
+            String[] categorias
+            ) {
+        Livro livro = new Livro();
+        livro.setISBN(isbn);
+        livro.setAutor(autor);
+        livro.setPublicacao(ano_publicacao);
+        livro.setTitulo(titulo);
+        livro.setPaginas(num_paginas);
+        livro.setNumEstante(num_estante);
+        livro.setCategoria(categorias);
+        this.addLivro(livro);
     }
 
     public void addLivro(Livro livro) {
@@ -85,26 +103,6 @@ public class Biblioteca {
         return conta_found;
     }
 
-    public void addAutor(Pessoa autor) {
-        for (int i = 0; i < MAX_AUTORES; i++) {
-            if (this.autoresRepo[i] == null) {
-                this.autoresRepo[i] = autor;
-                return;
-            }
-        }
-    }
-
-    public Pessoa getAutor(int id) {
-        Pessoa conta_found = null;
-        for (Pessoa conta : this.autoresRepo) {
-            if (conta != null && conta.getID() == id) {
-                conta_found = conta;
-                break;
-            }
-        }
-        return conta_found;
-    }
-
     public void checkoutLivro(int itemID, int contaID) {
         Conta conta = this.getConta(contaID);
         Item item = this.getItem(itemID);
@@ -162,13 +160,15 @@ public class Biblioteca {
         }
     }
 
-    public Livro[] searchLivro(String titulo, String assunto, int ano) {
+    public Livro[] searchLivro(String titulo, String assunto, String autor, int ano) {
         Livro livrosEncontrados[] = new Livro[MAX_LIVROS/2];
         int livros_adicionados = 0;
         for (Livro livro : this.livrosRepo) {
             if (livro != null) {
                 if (
                         livro.getTitulo().contains(titulo) ||
+                        livro.getAutor().contains(autor) ||
+                        ((!titulo.equals("")) && livro.getTitulo().contains(titulo)) ||
                         livro.getPublicacao() == ano ||
                         Utils.stringEmArray(livro.getCategoria(), assunto)
                    ) {
@@ -178,6 +178,14 @@ public class Biblioteca {
             }
         }
         return livrosEncontrados;
+    }
+
+    public String getNome() {
+        return this.nome;
+    }
+
+    public String getEnd() {
+        return this.endereço;
     }
 
     public String toString() {
