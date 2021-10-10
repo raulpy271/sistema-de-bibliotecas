@@ -36,6 +36,29 @@ public class Biblioteca {
         this.addLivro(livro);
     }
 
+    public void editLivro(
+            String isbn, 
+            int ano_publicacao, 
+            int num_paginas, 
+            int num_estante, 
+            String autor, 
+            String titulo, 
+            String[] categorias
+            ) {
+        Livro livro = getLivro(isbn);
+        if (livro != null) {
+            livro.setAutor(autor);
+            livro.setPublicacao(ano_publicacao);
+            livro.setTitulo(titulo);
+            livro.setPaginas(num_paginas);
+            livro.setNumEstante(num_estante);
+            livro.setCategoria(categorias);
+        } else {
+            throw new RuntimeException("Este livro não existe");
+        }
+    }
+
+
     public void addLivro(Livro livro) {
         for (int i = 0; i < MAX_LIVROS; i++) {
             if (this.livrosRepo[i] == null) {

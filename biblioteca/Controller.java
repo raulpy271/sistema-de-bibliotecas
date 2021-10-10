@@ -25,6 +25,25 @@ public class Controller {
         }
     }
 
+    public String editLivro(String[] argumentos) {
+        int argumentos_necessarios = 7;
+        if (argumentos.length >= argumentos_necessarios) {
+            String isbn = argumentos[0];
+            int ano_publicacao = Integer.parseInt(argumentos[1]);
+            int num_paginas = Integer.parseInt(argumentos[2]);
+            int num_estante = Integer.parseInt(argumentos[3]);
+            String autor = argumentos[4];
+            String titulo = argumentos[5];
+            String[] categorias = Arrays.copyOfRange(argumentos, 6, argumentos.length);
+            this.biblioteca.editLivro(
+                isbn, ano_publicacao, num_paginas, num_estante, autor, titulo, categorias
+            );
+            return "Livro editado com sucesso!";
+        } else {
+            return "Não foram adicionados argumentos suficientes";
+        }
+    }
+
     public String search(String[] argumentos) {
         int argumentos_necessarios = 2;
         if (argumentos.length == argumentos_necessarios) {
@@ -85,6 +104,8 @@ public class Controller {
                 return this.help(argumentos);
             case Commands.ADD_LIVRO:
                 return this.addLivro(argumentos);
+            case Commands.EDIT_LIVRO:
+                return this.editLivro(argumentos);
             case Commands.ADD_USER:
                 return this.addUser(argumentos);
             default:
