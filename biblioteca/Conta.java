@@ -4,6 +4,7 @@ public class Conta extends Pessoa {
     private static IDGenerator IDContaGen = new IDGenerator();
     private final int MAX_EMPRESTIMO = 5;
     private Emprestimo emprestimos[] = new Emprestimo[MAX_EMPRESTIMO];
+    private boolean bibliotecario = false;
 
     public Conta(String nome, String end, String senha) {
         super(nome, end);
@@ -13,6 +14,15 @@ public class Conta extends Pessoa {
 
     public void resetSenha(String senha) {
         this.senha = senha;
+    }
+
+    public void setBibliotecario(boolean eh_bibliotecario) {
+        this.bibliotecario = eh_bibliotecario;
+    }
+
+    public boolean eh_bibliotecario() {
+        return this.bibliotecario;
+
     }
 
     public void addEmprestimo(int itemID) {

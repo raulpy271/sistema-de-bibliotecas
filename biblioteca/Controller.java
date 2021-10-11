@@ -70,11 +70,11 @@ public class Controller {
             String senha = argumentos[3];
             int user_id = -1;
             if (tipo.equals("membro")) {
-                user_id = biblioteca.createConta(nome, endereco, senha);
+                user_id = biblioteca.createConta(nome, endereco, senha, false);
             } else if (tipo.equals("bibliotecario")) {
-                // Falta tratar caso onde o usuário é bibliotecário
+                user_id = biblioteca.createConta(nome, endereco, senha, true);
             } else {
-                return "tipo de usuário não permitido";
+                return "tipo de usuário não reconhecido";
             }
             return "Usuário adicionado. user_id: " + user_id;
         } else {

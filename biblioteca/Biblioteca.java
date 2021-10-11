@@ -99,8 +99,9 @@ public class Biblioteca {
         return item_found;
     }
 
-    public int createConta(String nome, String endereço, String senha) {
+    public int createConta(String nome, String endereço, String senha, boolean bibliotecario) {
         Conta conta = new Conta(nome, endereço, senha);
+        conta.setBibliotecario(bibliotecario);
         int id = conta.getID();
         this.addConta(conta);
         return id;
