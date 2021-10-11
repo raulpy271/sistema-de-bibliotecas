@@ -1,9 +1,22 @@
 
-public class Item extends Livro {
-    // Criando essa classe apenas para conseguir utiliza-la em Biblioteca.java
+public class Item {
+    private String ISBN;
     private int itemID;
     private Status.StatusEnum status = Status.StatusEnum.DISPONIVEL;
     private int idContaReservada = -1;
+    private static IDGenerator IDItemGen = new IDGenerator();
+
+    public Item() {
+        setID(Item.IDItemGen.gen());
+    }
+
+    public String getISBN() {
+        return this.ISBN;
+    }
+
+    public void setISBN(String ISBN) {
+        this.ISBN = ISBN;
+    }
 
     public int getID() {
         return this.itemID;
@@ -15,7 +28,6 @@ public class Item extends Livro {
 
     public void setStatus(Status.StatusEnum status) {
         this.status = status;
-
     }
 
     public void setIDContaReservada(int id) {
@@ -30,3 +42,4 @@ public class Item extends Livro {
         return this.status;
     }
 }
+
