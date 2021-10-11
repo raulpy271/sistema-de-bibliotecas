@@ -82,6 +82,17 @@ public class Controller {
         }
     }
 
+    public String removeUser(String[] argumentos) {
+        int argumentos_necessarios = 1;
+        if (argumentos.length == argumentos_necessarios) {
+            int user_id = Integer.parseInt(argumentos[0]);
+            biblioteca.removeConta(user_id);
+            return "Conta removida com sucesso!";
+        } else {
+            return "Não foram adicionados argumentos suficientes";
+        }
+    }
+
     private String login(String[] argumentos) {
         return "login com sucesso";
     }
@@ -108,6 +119,8 @@ public class Controller {
                 return this.editLivro(argumentos);
             case Commands.ADD_USER:
                 return this.addUser(argumentos);
+            case Commands.REMOVE_USER:
+                return this.removeUser(argumentos);
             default:
                 return "Comando não disponível. Digite HELP para ajuda.";
         }

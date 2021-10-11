@@ -15,6 +15,8 @@ ADICIONAR_ITEM <isnb> <quantidade>
 
 ADD_USER <tipo:membro|bibliotecario> <nome> <endereço> <senha>
 
+REMOVE_USER <user_id>
+
 ```
 
 # comandos ao estar logado em qualquer conta

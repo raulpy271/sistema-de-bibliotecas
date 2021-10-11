@@ -126,6 +126,23 @@ public class Biblioteca {
         return conta_found;
     }
 
+    public void removeConta(int id) {
+        int conta_position = -1;
+        for (int i = 0; i < MAX_CONTAS; i++) {
+            if (
+                    this.contasRepo[i] != null &&
+                    this.contasRepo[i].getID() == id) {
+                conta_position = i;
+                break;
+            }
+        }
+        if (conta_position > -1) {
+            this.contasRepo[conta_position] = null;
+        } else {
+            throw new RuntimeException("Este conta não existe");
+        }
+    }
+
     public void checkoutLivro(int itemID, int contaID) {
         Conta conta = this.getConta(contaID);
         Item item = this.getItem(itemID);

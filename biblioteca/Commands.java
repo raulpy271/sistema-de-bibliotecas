@@ -7,4 +7,5 @@ public class Commands {
     public static final String ADD_LIVRO = "add_livro";
     public static final String EDIT_LIVRO = "edit_livro";
     public static final String ADD_USER = "add_user";
+    public static final String REMOVE_USER = "remove_user";
 }
