@@ -5,6 +5,7 @@ public class Item {
     private Status.StatusEnum status = Status.StatusEnum.DISPONIVEL;
     private int idContaReservada = -1;
     private static IDGenerator IDItemGen = new IDGenerator();
+    public static Object IDContaGen;
 
     public Item() {
         setID(Item.IDItemGen.gen());
