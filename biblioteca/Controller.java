@@ -25,6 +25,22 @@ public class Controller {
         }
     }
 
+    public String addItem(String[] argumentos) {
+        int argumentos_necessarios = 2;
+        if (argumentos.length >= argumentos_necessarios) {
+            String isbn = argumentos[0];
+            int quantidade_itens = Integer.parseInt(argumentos[1]);
+            if (biblioteca.getLivro(isbn) != null) {
+                this.biblioteca.createItens(isbn, quantidade_itens);
+                return "Itens inseridos com sucesso!";
+            } else {
+                return "Não existe livros com o isbn digitado";
+            }
+        } else {
+            return "Não foram adicionados argumentos suficientes";
+        }
+    }
+
     public String editLivro(String[] argumentos) {
         int argumentos_necessarios = 7;
         if (argumentos.length >= argumentos_necessarios) {
@@ -115,6 +131,8 @@ public class Controller {
                 return this.help(argumentos);
             case Commands.ADD_LIVRO:
                 return this.addLivro(argumentos);
+            case Commands.ADD_ITEM:
+                return this.addItem(argumentos);
             case Commands.EDIT_LIVRO:
                 return this.editLivro(argumentos);
             case Commands.ADD_USER:

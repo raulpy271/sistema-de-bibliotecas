@@ -36,6 +36,14 @@ public class Biblioteca {
         this.addLivro(livro);
     }
 
+    public void createItens(String isbn, int quantidade_de_itens) {
+        for (int i = 0; i < quantidade_de_itens; i++) {
+            Item item = new Item();
+            item.setISBN(isbn);
+            this.addItem(item);
+        }
+    }
+
     public void editLivro(
             String isbn, 
             int ano_publicacao, 
