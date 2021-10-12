@@ -46,5 +46,16 @@ public class View {
         }
         return result;
     }
+
+    public static String contaAtraso(Conta conta) {
+        String result = "";
+        if (conta != null) {
+            result = "O seguinte usuário está atrasado com o item: \n";
+            result += user(conta); 
+        } else {
+            result = "O item não não está fora do prazo";
+        }
+        return result;
+    }
 }
 

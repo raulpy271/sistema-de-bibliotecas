@@ -246,6 +246,22 @@ public class Controller {
         }
     }
 
+    public String checkAtraso(String[] argumentos) {
+        int argumentos_necessarios = 1;
+        if (argumentos.length == argumentos_necessarios) {
+            try {
+                int item_id = Integer.parseInt(argumentos[0]);
+                return View.contaAtraso(biblioteca.getContaComAtraso(item_id));
+            } catch (NumberFormatException e) {
+                return "Erro ao fazer parser do item_id";
+            } catch (RuntimeException e) {
+                return e.getMessage();
+            }
+        } else {
+            return "Não foram adicionados argumentos suficientes";
+        }
+    }
+
     private String login(String[] argumentos) {
         int argumentos_necessarios = 2;
         if (argumentos.length == argumentos_necessarios) {
@@ -309,6 +325,8 @@ public class Controller {
                 return this.reservar(argumentos);
             case Commands.WHO_DO_CHECKOUT:
                 return this.who_do_checkout(argumentos);
+            case Commands.CHECK_ATRASO:
+                return this.checkAtraso(argumentos);
             default:
                 return "Comando não disponível. Digite HELP para ajuda.";
         }

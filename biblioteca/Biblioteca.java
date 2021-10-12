@@ -1,4 +1,3 @@
-
 import java.util.Date;
 
 public class Biblioteca {
@@ -270,6 +269,23 @@ public class Biblioteca {
         } else {
             throw new RuntimeException("O item já foi reservado ou não está disponivel");
         }
+    }
+
+    public Conta getContaComAtraso(int itemID) {
+        Item item = getItem(itemID);
+        if (item == null) {
+            throw new RuntimeException("Não possue item com esse ID");
+        }
+        for (Conta conta: this.contasRepo) {
+            if (conta != null && conta.getEmprestimo(itemID) != null) {
+                if (temAtraso(itemID, conta.getID())) {
+                    return conta;
+                } else {
+                    return null;
+                }
+            }
+        }
+        return null;
     }
 
     public boolean temAtraso(int itemID, int contaID) {

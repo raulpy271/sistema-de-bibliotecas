@@ -8,6 +8,7 @@ public class Commands {
     public static final String ADD_USER = "add_user";
     public static final String REMOVE_USER = "remove_user";
     public static final String WHO_DO_CHECKOUT = "who_do_checkout";
+    public static final String CHECK_ATRASO = "check_atraso";
     public static final String REMOVE_ITEM = "remove_item";
 
     public static final String CHECKOUT = "checkout";
@@ -22,6 +23,7 @@ public class Commands {
 
     public static final String[] SOMENTE_BIBLIOTECARIO = {
         WHO_DO_CHECKOUT,
+        CHECK_ATRASO,
         ADD_USER,
         REMOVE_USER,
         ADD_LIVRO,
