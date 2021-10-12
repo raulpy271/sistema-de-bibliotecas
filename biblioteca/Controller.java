@@ -1,4 +1,5 @@
 import java.util.Arrays;
+import java.lang.NumberFormatException;
 
 public class Controller {
     private Biblioteca biblioteca;
@@ -137,6 +138,24 @@ public class Controller {
         }
     }
 
+    public String who_do_checkout(String[] argumentos) {
+        int argumentos_necessarios = 1;
+        if (argumentos.length == argumentos_necessarios) {
+            try {
+                int item_id = Integer.parseInt(argumentos[0]);
+                int conta_id = biblioteca.searchContaQFezCheckout(item_id);
+                Conta conta = biblioteca.getConta(conta_id);
+                return View.user(conta);
+            } catch (NumberFormatException e) {
+                return "Erro ao fazer parser do item_id";
+            } catch (RuntimeException e) {
+                return e.getMessage();
+            }
+        } else {
+            return "Não foram adicionados argumentos suficientes";
+        }
+    }
+
     private String login(String[] argumentos) {
         return "login com sucesso";
     }
@@ -171,6 +190,8 @@ public class Controller {
                 return this.loggedInfo(argumentos);
             case Commands.CHECKOUT:
                 return this.checkout(argumentos);
+            case Commands.WHO_DO_CHECKOUT:
+                return this.who_do_checkout(argumentos);
             default:
                 return "Comando não disponível. Digite HELP para ajuda.";
         }

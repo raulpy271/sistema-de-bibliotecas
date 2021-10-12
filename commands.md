@@ -17,6 +17,8 @@ ADD_USER <tipo:membro|bibliotecario> <nome> <endereço> <senha>
 
 REMOVE_USER <user_id>
 
+WHO_DO_CHEKOUT <item_id>
+
 ```
 
 # comandos ao estar logado em qualquer conta

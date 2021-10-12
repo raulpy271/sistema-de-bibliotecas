@@ -11,4 +11,5 @@ public class Commands {
     public static final String REMOVE_USER = "remove_user";
     public static final String LOGGED_INFO = "logged_info";
     public static final String CHECKOUT = "checkout";
+    public static final String WHO_DO_CHECKOUT = "who_do_checkout";
 }

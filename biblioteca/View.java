@@ -1,5 +1,6 @@
 
 public class View {
+
     public static String books(Livro[] livros) {
         String result = "";
         int counter = 0;
@@ -37,6 +38,12 @@ public class View {
         String result = "ID: " + conta.getID() + "\n";
         result += "Nome: " + conta.getNome() + "\n";
         result += "Senha: ***" + conta.getSenha().substring(3) + "\n";
+        result += "Tipo: ";
+        if (conta.eh_bibliotecario()) {
+            result += "bibliotecário \n";
+        } else {
+            result += "membro \n";
+        }
         return result;
     }
 }
