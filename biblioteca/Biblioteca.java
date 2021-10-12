@@ -203,8 +203,18 @@ public class Biblioteca {
     public void devolverLivro(int itemID, int contaID) {
         Conta conta = this.getConta(contaID);
         Item item = this.getItem(itemID);
-        item.setStatus(Status.StatusEnum.DISPONIVEL);
-        conta.removeEmprestimo(itemID);
+        if (conta != null && item != null) {
+            if (conta.getEmprestimo(itemID) != null) {
+                if (item.getStatus() == Status.StatusEnum.EMPRESTADO) {
+                    item.setStatus(Status.StatusEnum.DISPONIVEL);
+                }
+                conta.removeEmprestimo(itemID);
+            } else {
+                throw new RuntimeException("O item precisa estar emprestado para ser devolvido");
+            }
+        } else {
+            throw new RuntimeException("Algum ID está inválido, ou ambos");
+        }
     }
 
     public void reservarLivro(int itemID, int contaID) {

@@ -138,6 +138,24 @@ public class Controller {
         }
     }
 
+    public String devolver(String[] argumentos) {
+        int argumentos_necessarios = 1;
+        if (argumentos.length == argumentos_necessarios) {
+            int conta_id = permission.getCurrentUser().getID();
+            try {
+                int item_id = Integer.parseInt(argumentos[0]);
+                biblioteca.devolverLivro(item_id, conta_id);
+                return "Devolução com sucesso";
+            } catch (NumberFormatException e) {
+                return "Erro ao fazer parser do item_id";
+            } catch (RuntimeException e) {
+                return e.getMessage();
+            }
+        } else {
+            return "Não foram adicionados argumentos suficientes";
+        }
+    }
+
     public String who_do_checkout(String[] argumentos) {
         int argumentos_necessarios = 1;
         if (argumentos.length == argumentos_necessarios) {
@@ -193,6 +211,8 @@ public class Controller {
                 return this.loggedInfo(argumentos);
             case Commands.CHECKOUT:
                 return this.checkout(argumentos);
+            case Commands.DEVOLVER:
+                return this.devolver(argumentos);
             case Commands.WHO_DO_CHECKOUT:
                 return this.who_do_checkout(argumentos);
             default:

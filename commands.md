@@ -29,5 +29,7 @@ PESQUISA <parametro:autor|titulo|assunto|ano> <valor_do_parametro>
 PESQUISA_POR_TODOS_PARAMETROS <valor_do_autor> <valor_do_titulo> <valor_do_assunto> <valor_do_ano>
 
 CHECKOUT <isbn> 
+
+DEVOLVER <item_id>
 ```
 
