@@ -31,5 +31,7 @@ PESQUISA_POR_TODOS_PARAMETROS <valor_do_autor> <valor_do_titulo> <valor_do_assun
 CHECKOUT <isbn> 
 
 DEVOLVER <item_id>
+
+RENOVAR <item_id>
 ```
 

@@ -250,6 +250,9 @@ public class Biblioteca {
     public void renovarLivro(int itemID, int contaID) {
         Conta conta = this.getConta(contaID);
         Item item = this.getItem(itemID);
+        if (conta == null || item == null) {
+            throw new RuntimeException("O item ou a conta com este ID não foi encontrado");
+        }
         if (item.getStatus() == Status.StatusEnum.EMPRESTADO) {
             Emprestimo emprestimo = conta.getEmprestimo(itemID);
             if (emprestimo != null) {
