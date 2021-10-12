@@ -167,6 +167,9 @@ public class Controller {
     public String lidaComInputDoUsuario(String input) {
         String[] comando_e_argumentos = Utils.divideArgumentos(input);
         String comando = comando_e_argumentos[0];
+        if (!permission.canAcess(comando)) {
+            return "Usuário não tem permissão de executar esse comando.";
+        }
         String[] argumentos = 
             Arrays.copyOfRange(comando_e_argumentos, 1, Utils.countNotNull(comando_e_argumentos));
         switch (comando) {
