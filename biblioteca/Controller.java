@@ -109,16 +109,19 @@ public class Controller {
     public String removeUser(String[] argumentos) {
         int argumentos_necessarios = 1;
         if (argumentos.length == argumentos_necessarios) {
-            int user_id = Integer.parseInt(argumentos[0]);
-            if (user_id != permission.getCurrentUser().getID()) {
-                try {
+            try {
+                int user_id = Integer.parseInt(argumentos[0]);
+                if (user_id != permission.getCurrentUser().getID()) {
                     biblioteca.removeConta(user_id);
                     return "Conta removida com sucesso!";
-                } catch (RuntimeException e) {
-                    return e.getMessage();
+                } else {
+                    return "Antes de deletar a conta atual, faça login em outra conta";
                 }
-            } else {
-                return "Antes de deletar a conta atual, faça login em outra conta";
+
+            } catch (NumberFormatException e) {
+                return "Não foi possivel fazer parser do id";
+            } catch (RuntimeException e) {
+                return e.getMessage();
             }
         } else {
             return "Não foram adicionados argumentos suficientes";
@@ -143,8 +146,6 @@ public class Controller {
                 }
             } catch(NumberFormatException e) {
                 return "Não foi possivel fazer parser do id";
-            } catch (RuntimeException e) {
-                return e.getMessage();
             }
         } else {
             return "Não foram adicionados argumentos suficientes";
