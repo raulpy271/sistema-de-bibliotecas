@@ -32,5 +32,12 @@ public class View {
         }
         return result;
     }
+
+    public static String user(Conta conta) {
+        String result = "ID: " + conta.getID() + "\n";
+        result += "Nome: " + conta.getNome() + "\n";
+        result += "Senha: ***" + conta.getSenha().substring(3) + "\n";
+        return result;
+    }
 }
 

@@ -9,4 +9,6 @@ public class Commands {
     public static final String ADD_ITEM = "add_item";
     public static final String ADD_USER = "add_user";
     public static final String REMOVE_USER = "remove_user";
+    public static final String LOGGED_INFO = "logged_info";
+    public static final String CHECKOUT = "checkout";
 }

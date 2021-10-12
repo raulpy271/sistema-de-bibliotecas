@@ -116,6 +116,27 @@ public class Controller {
         }
     }
 
+    public String checkout(String[] argumentos) {
+        int argumentos_necessarios = 1;
+        if (argumentos.length == argumentos_necessarios) {
+            String isbn = argumentos[0];
+            if (biblioteca.getLivro(isbn) != null) {
+                int conta_id = permission.getCurrentUser().getID();
+                try {
+                    int item_id = biblioteca.getItemDisponivel(isbn);
+                    this.biblioteca.checkoutLivro(item_id, conta_id);
+                    return "Feito checkout de item_id " + item_id;
+                } catch (Exception e) {
+                    return e.getMessage();
+                }
+            } else {
+                return "Não existe livros com o isbn digitado";
+            }
+        } else {
+            return "Não foram adicionados argumentos suficientes";
+        }
+    }
+
     private String login(String[] argumentos) {
         return "login com sucesso";
     }
@@ -148,6 +169,8 @@ public class Controller {
                 return this.removeUser(argumentos);
             case Commands.LOGGED_INFO:
                 return this.loggedInfo(argumentos);
+            case Commands.CHECKOUT:
+                return this.checkout(argumentos);
             default:
                 return "Comando não disponível. Digite HELP para ajuda.";
         }

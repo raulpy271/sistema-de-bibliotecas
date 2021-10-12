@@ -12,6 +12,10 @@ public class Conta extends Pessoa {
         this.senha = senha;
     }
 
+    public String getSenha() {
+        return this.senha;
+    }
+
     public void resetSenha(String senha) {
         this.senha = senha;
     }

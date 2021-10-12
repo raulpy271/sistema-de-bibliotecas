@@ -107,6 +107,24 @@ public class Biblioteca {
         return item_found;
     }
 
+    public int getItemDisponivel(String isbn) {
+        int item_id = -1;
+        for (Item item : this.itensRepo) {
+            if (
+                    item != null && 
+                    item.getISBN().equals(isbn) &&
+                    item.getStatus() == Status.StatusEnum.DISPONIVEL) {
+                item_id = item.getID();
+                break;
+            }
+        }
+        if (item_id != -1) {
+            return item_id;
+        } else {
+            throw new RuntimeException("Não há itens disponiveis desse isbn: " + isbn);
+        }
+    }
+
     public int createConta(String nome, String endereço, String senha, boolean bibliotecario) {
         Conta conta = new Conta(nome, endereço, senha);
         conta.setBibliotecario(bibliotecario);
