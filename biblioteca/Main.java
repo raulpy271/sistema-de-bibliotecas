@@ -12,8 +12,11 @@ class Main {
     }
 
     public static void main(String[] args) {
-        Biblioteca lib = new Biblioteca("da cidade", "av tal");
-        Controller controlador = new Controller(lib);
+        Biblioteca lib = new Biblioteca("da cidade", "avenida tal");
+        int root_id = lib.createConta("root", "avenida tal", "root", true);
+        Conta root = lib.getConta(root_id);
+        Permission permission = new Permission(root);
+        Controller controlador = new Controller(lib, permission);
         Scanner leitor_de_input = new Scanner(System.in);
         String input_atual;
         String resultado_do_input;

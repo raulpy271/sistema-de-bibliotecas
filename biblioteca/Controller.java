@@ -2,8 +2,15 @@ import java.util.Arrays;
 
 public class Controller {
     private Biblioteca biblioteca;
-    public Controller(Biblioteca biblioteca) {
+    private Permission permission;
+
+    public Controller(Biblioteca biblioteca, Permission permission) {
         this.biblioteca = biblioteca;
+        this.permission = permission;
+    }
+
+    public String loggedInfo(String[] argumentos) {
+        return View.user(this.permission.getCurrentUser());
     }
 
     public String addLivro(String[] argumentos) {
@@ -139,6 +146,8 @@ public class Controller {
                 return this.addUser(argumentos);
             case Commands.REMOVE_USER:
                 return this.removeUser(argumentos);
+            case Commands.LOGGED_INFO:
+                return this.loggedInfo(argumentos);
             default:
                 return "Comando não disponível. Digite HELP para ajuda.";
         }
