@@ -172,6 +172,17 @@ public class Biblioteca {
         return conta_found;
     }
 
+    public Conta getContaPorNome(String nome) {
+        Conta conta_found = null;
+        for (Conta conta : this.contasRepo) {
+            if (conta != null && conta.getNome().equals(nome)) {
+                conta_found = conta;
+                break;
+            }
+        }
+        return conta_found;
+    }
+
     public void removeConta(int id) {
         int conta_position = -1;
         for (int i = 0; i < MAX_CONTAS; i++) {

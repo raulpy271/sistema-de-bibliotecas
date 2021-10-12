@@ -175,7 +175,23 @@ public class Controller {
     }
 
     private String login(String[] argumentos) {
-        return "login com sucesso";
+        int argumentos_necessarios = 2;
+        if (argumentos.length == argumentos_necessarios) {
+            String nome = argumentos[0];
+            String senha = argumentos[1];
+            Conta conta = biblioteca.getContaPorNome(nome);
+            if (conta == null) {
+                return "Conta não existe";
+            }
+            if (conta.getSenha().equals(senha)) {
+                permission.setCurrentUser(conta);
+                return "login com sucesso";
+            } else {
+                return "Senha inválida";
+            }
+        } else {
+            return "Não foram adicionados argumentos suficientes";
+        }
     }
 
     private String help(String[] argumentos) {
