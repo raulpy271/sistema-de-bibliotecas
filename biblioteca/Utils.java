@@ -9,7 +9,7 @@ class Utils {
 
     public static boolean stringEmArray(String[] arr, String para_buscar) {
         for (String element: arr) {
-            if (element != null && element.contains(para_buscar)) {
+            if (element != null && element.equals(para_buscar)) {
                 return true;
             }
         }

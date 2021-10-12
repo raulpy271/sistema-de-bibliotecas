@@ -110,8 +110,16 @@ public class Controller {
         int argumentos_necessarios = 1;
         if (argumentos.length == argumentos_necessarios) {
             int user_id = Integer.parseInt(argumentos[0]);
-            biblioteca.removeConta(user_id);
-            return "Conta removida com sucesso!";
+            if (user_id != permission.getCurrentUser().getID()) {
+                try {
+                    biblioteca.removeConta(user_id);
+                    return "Conta removida com sucesso!";
+                } catch (RuntimeException e) {
+                    return e.getMessage();
+                }
+            } else {
+                return "Antes de deletar a conta atual, faça login em outra conta";
+            }
         } else {
             return "Não foram adicionados argumentos suficientes";
         }
