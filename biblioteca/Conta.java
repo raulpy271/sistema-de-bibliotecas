@@ -22,18 +22,9 @@ public class Conta extends Pessoa {
 
     public boolean eh_bibliotecario() {
         return this.bibliotecario;
+
     }
 
-    public IDGenerator searchContaQFazChekout(IDGenerator IDContaGen){
-        Conta.IDContaGen = IDContaGen;
-        return IDContaGen;
-    }
-
-    public IDGenerator searchLivroPegoPorConta(IDGenerator IDContaGen){
-        Item.IDContaGen = IDContaGen;
-        return IDContaGen;
-    }
-    
     public void addEmprestimo(int itemID) {
         for (int i = 0; i < MAX_EMPRESTIMO; i++) {
             if (this.emprestimos[i] == null) {
