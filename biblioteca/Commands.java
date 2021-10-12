@@ -18,6 +18,7 @@ public class Commands {
     public static final String HELP = "help";
     public static final String LOGGED_INFO = "logged_info";
     public static final String RENOVAR = "renovar";
+    public static final String RESERVAR = "reservar";
 
     public static final String[] SOMENTE_BIBLIOTECARIO = {
         WHO_DO_CHECKOUT,

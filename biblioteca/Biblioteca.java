@@ -239,6 +239,13 @@ public class Biblioteca {
 
     public void reservarLivro(int itemID, int contaID) {
         Item item = this.getItem(itemID);
+        Conta conta = this.getConta(contaID);
+        if (conta == null || item == null) {
+            throw new RuntimeException("O item ou a conta com este ID não foi encontrado");
+        }
+        if (conta.getEmprestimo(itemID) != null) {
+            throw new RuntimeException("Não é possivel reservar itens emprestádos a si mesmo");
+        }
         if (item.getStatus() == Status.StatusEnum.EMPRESTADO) {
             item.setStatus(Status.StatusEnum.RESERVADO);
             item.setIDContaReservada(contaID);

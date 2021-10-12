@@ -33,5 +33,7 @@ CHECKOUT <isbn>
 DEVOLVER <item_id>
 
 RENOVAR <item_id>
+
+RESERVAR <item_id>
 ```
 
