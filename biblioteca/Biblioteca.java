@@ -96,6 +96,15 @@ public class Biblioteca {
         }
     }
 
+    public void removeItem(int item_id) {
+        for (int i = 0; i < MAX_ITENS; i++) {
+            if (this.itensRepo[i] != null && this.itensRepo[i].getID() == item_id) {
+                this.itensRepo[i] = null;
+                return;
+            }
+        }
+    }
+
     public Item getItem(int id) {
         Item item_found = null;
         for (Item item : this.itensRepo) {

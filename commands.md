@@ -8,6 +8,8 @@ EDIT_LIVRO <isbn> <ano_publicacao> <paginas> <num_estante> <autor> <titulo> <cat
 
 ADD_ITEM <isnb> <quantidade>
 
+REMOVE_ITEM <item_id>
+
 ADD_USER <tipo:membro|bibliotecario> <nome> <endereço> <senha>
 
 REMOVE_USER <user_id>

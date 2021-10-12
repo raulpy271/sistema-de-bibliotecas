@@ -1,14 +1,15 @@
 
 public class Commands {
 
+    // Somente bibliotecário
     public static final String ADD_LIVRO = "add_livro";
     public static final String EDIT_LIVRO = "edit_livro";
     public static final String ADD_ITEM = "add_item";
     public static final String ADD_USER = "add_user";
     public static final String REMOVE_USER = "remove_user";
     public static final String WHO_DO_CHECKOUT = "who_do_checkout";
+    public static final String REMOVE_ITEM = "remove_item";
 
-    // Somente bibliotecário
     public static final String CHECKOUT = "checkout";
     public static final String DEVOLVER = "devolver";
     public static final String EXIT = "exit";
@@ -24,5 +25,6 @@ public class Commands {
         ADD_LIVRO,
         ADD_ITEM,
         EDIT_LIVRO,
+        REMOVE_ITEM,
     };
 }

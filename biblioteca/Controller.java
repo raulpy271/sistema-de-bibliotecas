@@ -125,6 +125,33 @@ public class Controller {
         }
     }
 
+    public String removeItem(String[] argumentos) {
+        int argumentos_necessarios = 1;
+        if (argumentos.length == argumentos_necessarios) {
+            try {
+                int item_id = Integer.parseInt(argumentos[0]);
+                Item item = biblioteca.getItem(item_id);
+                if (item != null) {
+                    if (item.getStatus() != Status.StatusEnum.DISPONIVEL) {
+                        return "Item não disponivel. Está emprestado ou reservado";
+                    } else {
+                        biblioteca.removeItem(item_id);
+                        return "Item removido com sucesso!";
+                    }
+                } else {
+                    return "Não há itens com esse id";
+                }
+            } catch(NumberFormatException e) {
+                return "Não foi possivel fazer parser do id";
+            } catch (RuntimeException e) {
+                return e.getMessage();
+            }
+        } else {
+            return "Não foram adicionados argumentos suficientes";
+        }
+
+    }
+
     public String checkout(String[] argumentos) {
         int argumentos_necessarios = 1;
         if (argumentos.length == argumentos_necessarios) {
@@ -231,6 +258,8 @@ public class Controller {
                 return this.addUser(argumentos);
             case Commands.REMOVE_USER:
                 return this.removeUser(argumentos);
+            case Commands.REMOVE_ITEM:
+                return this.removeItem(argumentos);
             case Commands.LOGGED_INFO:
                 return this.loggedInfo(argumentos);
             case Commands.CHECKOUT:
