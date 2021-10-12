@@ -124,6 +124,25 @@ public class Biblioteca {
         }
     }
 
+    public int searchContaQFezCheckout(int item_id) {
+        Emprestimo emprestimo;
+        int id_conta = -1;
+        for (int i = 0; i < MAX_CONTAS; i++) {
+            if (this.contasRepo[i] != null) {
+                emprestimo = this.contasRepo[i].getEmprestimo(item_id);
+                if (emprestimo != null) {
+                    id_conta = contasRepo[i].getID();
+                    break;
+                }
+            }
+        }
+        if (id_conta != -1) {
+            return id_conta;
+        } else {
+            throw new RuntimeException("Nem uma conta fez checkout desse item");
+        }
+    }
+
     public Conta getConta(int id) {
         Conta conta_found = null;
         for (Conta conta : this.contasRepo) {
