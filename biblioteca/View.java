@@ -1,3 +1,4 @@
+import java.text.SimpleDateFormat;
 
 public class View {
 
@@ -56,6 +57,30 @@ public class View {
             result = "O item não não está fora do prazo";
         }
         return result;
+    }
+
+    public static String emprestimos(Emprestimo[] emprestimos, Biblioteca repo) {
+        Item item;
+        Livro livro;
+        String result = "";
+        int counter = 0;
+        SimpleDateFormat formater = new SimpleDateFormat("dd/MM/yyyy");
+        for (Emprestimo emprestimo: emprestimos) {
+            if (emprestimo != null) {
+                counter++;
+                item = repo.getItem(emprestimo.itemID);
+                livro = repo.getLivro(item.getISBN());
+                result += "Emprestimo " + counter + "\n";
+                result += "Data: " + formater.format(emprestimo.data) + "\n";
+                result += "Item id: " + item.getID() + "\n";
+                result += "Livro: " + livro.getTitulo() + "\n\n";
+            }
+        }
+        if (counter > 0) {
+            return result;   
+        } else {
+            return "Não há emprestimos para esse usuário";
+        }
     }
 }
 

@@ -246,6 +246,26 @@ public class Controller {
         }
     }
 
+    public String itensOfThisUser(String[] argumentos) {
+        int argumentos_necessarios = 1;
+        if (argumentos.length == argumentos_necessarios) {
+            try {
+                int conta_id = Integer.parseInt(argumentos[0]);
+                Conta conta = biblioteca.getConta(conta_id);
+                if (conta != null) {
+                    Emprestimo[] emprestimos = conta.getAllEmprestimos();
+                    return View.emprestimos(emprestimos, biblioteca);
+                } else {
+                    return "Não foi encontrado conta com esse ID";
+                }
+            } catch (NumberFormatException e) {
+                return "Erro ao fazer parser do item_id";
+            }
+        } else {
+            return "Não foram adicionados argumentos suficientes";
+        }
+    }
+
     public String checkAtraso(String[] argumentos) {
         int argumentos_necessarios = 1;
         if (argumentos.length == argumentos_necessarios) {
@@ -325,6 +345,8 @@ public class Controller {
                 return this.reservar(argumentos);
             case Commands.WHO_DO_CHECKOUT:
                 return this.who_do_checkout(argumentos);
+            case Commands.ITENS_OF_THIS_USER:
+                return this.itensOfThisUser(argumentos);
             case Commands.CHECK_ATRASO:
                 return this.checkAtraso(argumentos);
             default:

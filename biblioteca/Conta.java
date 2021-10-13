@@ -60,6 +60,10 @@ public class Conta extends Pessoa {
         return null;
     }
 
+    public Emprestimo[] getAllEmprestimos() {
+        return this.emprestimos;
+    }
+
     public void statusConta(){
         this.statusPessoa();
         System.out.println("Senha: ***"+ this.senha.substring(3));
