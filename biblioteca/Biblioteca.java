@@ -211,6 +211,12 @@ public class Biblioteca {
     public void checkoutLivro(int itemID, int contaID) {
         Conta conta = this.getConta(contaID);
         Item item = this.getItem(itemID);
+        if (conta == null || item == null) {
+            throw new RuntimeException("O item ou a conta com este ID não foi encontrado");
+        }
+        if (!conta.canCheckout()) {
+            throw new RuntimeException("O limite de checkout foi atingido");
+        } 
         if (item.getStatus() == Status.StatusEnum.DISPONIVEL) {
             item.setStatus(Status.StatusEnum.EMPRESTADO);
             conta.addEmprestimo(itemID);

@@ -64,6 +64,15 @@ public class Conta extends Pessoa {
         return this.emprestimos;
     }
 
+    public boolean canCheckout() {
+        for (Emprestimo emprestimo: this.emprestimos) {
+            if (emprestimo == null) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     public void statusConta(){
         this.statusPessoa();
         System.out.println("Senha: ***"+ this.senha.substring(3));
