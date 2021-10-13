@@ -1,7 +1,9 @@
+package biblioteca.utils;
+
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-class Utils {
+public class Utils {
     public static int converteMilisegundosParaDias(long milissegundos) {
         int fator_conversao = 86400000;
         return (int) (milissegundos / fator_conversao);

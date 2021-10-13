@@ -1,3 +1,4 @@
+package biblioteca.utils;
 
 public class IDGenerator {
     private int count = -1;

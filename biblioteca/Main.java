@@ -1,4 +1,13 @@
+package biblioteca;
+
 import java.util.Scanner;
+
+import biblioteca.Biblioteca;
+import biblioteca.Controller;
+import biblioteca.Permission;
+import biblioteca.domain.Conta;
+import biblioteca.utils.Utils;
+
 
 class Main {
 

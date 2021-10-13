@@ -1,6 +1,7 @@
+package biblioteca.domain;
 
 public class Status {
-    enum StatusEnum {
+    public enum StatusEnum {
         DISPONIVEL,
         RESERVADO,
         DISPONIVEL_PARA_QUEM_RESERVOU,
