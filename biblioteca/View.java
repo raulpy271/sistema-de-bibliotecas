@@ -23,6 +23,7 @@ public class View {
         String result = "";
         result += "Titulo: " +  livro.getTitulo() + "\n";
         result += "Autor: " +  livro.getAutor() + "\n";
+        result += "Número da estante: " + livro.getNumEstante() + "\n";
         result += "Categoria: " +  View.categorias(livro.getCategoria()) + "\n";
         return result;
     }
@@ -73,7 +74,7 @@ public class View {
                 result += "Emprestimo " + counter + "\n";
                 result += "Data: " + formater.format(emprestimo.data) + "\n";
                 result += "Item id: " + item.getID() + "\n";
-                result += "Livro: " + livro.getTitulo() + "\n\n";
+                result += book(livro) + "\n";
             }
         }
         if (counter > 0) {
