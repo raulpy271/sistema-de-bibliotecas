@@ -1,3 +1,8 @@
+package biblioteca.domain;
+
+import biblioteca.domain.Pessoa;
+import biblioteca.domain.Emprestimo;
+import biblioteca.utils.IDGenerator;
 
 public class Conta extends Pessoa {
     private String senha;

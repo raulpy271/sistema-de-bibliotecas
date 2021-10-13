@@ -1,4 +1,14 @@
+package biblioteca;
+
+import biblioteca.domain.Item;
+import biblioteca.domain.Livro;
+import biblioteca.domain.Conta;
+import biblioteca.domain.Status;
+import biblioteca.domain.Emprestimo;
+import biblioteca.utils.Utils;
+
 import java.util.Date;
+
 
 public class Biblioteca {
     private final int MAX_ITENS = 100;

@@ -1,3 +1,4 @@
+package biblioteca.domain;
 
 class Pessoa {
     private String nome;

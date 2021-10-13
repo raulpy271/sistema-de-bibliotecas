@@ -1,3 +1,7 @@
+package biblioteca.domain;
+
+import biblioteca.domain.Status;
+import biblioteca.utils.IDGenerator;
 
 public class Item {
     private String ISBN;

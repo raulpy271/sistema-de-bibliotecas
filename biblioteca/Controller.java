@@ -1,5 +1,13 @@
+package biblioteca;
+
 import java.util.Arrays;
 import java.lang.NumberFormatException;
+
+import biblioteca.domain.*;
+import biblioteca.Permission;
+import biblioteca.Biblioteca;
+import biblioteca.Commands;
+import biblioteca.utils.Utils;
 
 public class Controller {
     private Biblioteca biblioteca;

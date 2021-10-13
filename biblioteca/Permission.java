@@ -1,3 +1,8 @@
+package biblioteca;
+
+import biblioteca.domain.Conta;
+import biblioteca.Commands;
+import biblioteca.utils.Utils;
 
 public class Permission {
     private Conta current_user;

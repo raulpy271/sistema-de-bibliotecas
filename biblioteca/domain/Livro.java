@@ -1,3 +1,4 @@
+package biblioteca.domain;
 
 public class Livro {
     public final static int MAX_CATEGORIAS = 50;

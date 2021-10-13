@@ -1,4 +1,8 @@
+package biblioteca;
+
 import java.text.SimpleDateFormat;
+
+import biblioteca.domain.*;
 
 public class View {
 
