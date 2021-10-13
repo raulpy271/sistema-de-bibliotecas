@@ -160,7 +160,7 @@ public class Controller {
             if (biblioteca.getLivro(isbn) != null) {
                 int conta_id = permission.getCurrentUser().getID();
                 try {
-                    int item_id = biblioteca.getItemDisponivel(isbn);
+                    int item_id = biblioteca.getItemDisponivel(isbn, conta_id);
                     this.biblioteca.checkoutLivro(item_id, conta_id);
                     return "Feito checkout de item_id " + item_id;
                 } catch (Exception e) {

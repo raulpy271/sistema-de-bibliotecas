@@ -18,6 +18,7 @@ WHO_DO_CHECKOUT <item_id>
 
 ITENS_OF_THIS_USER <user_id>
 
+CHECK_ATRASO <item_id>
 
 ```
 

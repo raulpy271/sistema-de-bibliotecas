@@ -24,7 +24,7 @@ class Main {
         Main.boasVindas(lib);
 
         while (true) {
-            System.out.print(" -> ");
+            System.out.print("(" + permission.getCurrentUser().getNome() + ") -> ");
             input_atual = leitor_de_input.nextLine().toLowerCase();
             if (Utils.contemNoInicio(input_atual, Commands.EXIT)) {
                 break;

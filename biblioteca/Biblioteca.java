@@ -115,13 +115,13 @@ public class Biblioteca {
         return item_found;
     }
 
-    public int getItemDisponivel(String isbn) {
+    public int getItemDisponivel(String isbn, int contaID) {
         int item_id = -1;
         for (Item item : this.itensRepo) {
             if (
                     item != null && 
                     item.getISBN().equals(isbn) &&
-                    item.getStatus() == Status.StatusEnum.DISPONIVEL) {
+                    this.checkDisponivel(item, contaID)) {
                 item_id = item.getID();
                 break;
             }
@@ -217,8 +217,9 @@ public class Biblioteca {
         if (!conta.canCheckout()) {
             throw new RuntimeException("O limite de checkout foi atingido");
         } 
-        if (item.getStatus() == Status.StatusEnum.DISPONIVEL) {
+        if (this.checkDisponivel(item, contaID)) {
             item.setStatus(Status.StatusEnum.EMPRESTADO);
+            item.setIDContaReservada(-1);
             conta.addEmprestimo(itemID);
         } else {
             throw new RuntimeException("Este item já foi emprestado");
@@ -230,7 +231,9 @@ public class Biblioteca {
         Item item = this.getItem(itemID);
         if (conta != null && item != null) {
             if (conta.getEmprestimo(itemID) != null) {
-                if (item.getStatus() == Status.StatusEnum.EMPRESTADO) {
+                if (item.getStatus() == Status.StatusEnum.RESERVADO) {
+                    item.setStatus(Status.StatusEnum.DISPONIVEL_PARA_QUEM_RESERVOU);
+                } else {
                     item.setStatus(Status.StatusEnum.DISPONIVEL);
                 }
                 conta.removeEmprestimo(itemID);
@@ -325,6 +328,18 @@ public class Biblioteca {
             }
         }
         return livrosEncontrados;
+    }
+
+    private boolean checkDisponivel(Item item, int user_id) {
+        if (item.getStatus() == Status.StatusEnum.DISPONIVEL) {
+            return true;
+        } else if (
+                item.getStatus() == Status.StatusEnum.DISPONIVEL_PARA_QUEM_RESERVOU &&
+                item.getIDContaReservada() == user_id) {
+            return true;
+        } else {
+            return false;
+        } 
     }
 
     public String getNome() {
