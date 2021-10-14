@@ -311,7 +311,13 @@ public class Controller {
     }
 
     private String help(String[] argumentos) {
-        return "os comandos são: help, search, exit, login.";
+        String helpFile = "commands.md";
+        String result = Utils.StringFromFile(helpFile);
+        if (result != null) {
+            return result;
+        } else {
+            return "Não foi possivel encontrar o arquivo de ajuda";
+        }
     }
 
     public String lidaComInputDoUsuario(String input) {

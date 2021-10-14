@@ -1,7 +1,9 @@
 package biblioteca.utils;
 
+import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.io.File;
 
 public class Utils {
     public static int converteMilisegundosParaDias(long milissegundos) {
@@ -52,5 +54,20 @@ public class Utils {
             }
         }
         return counter;
+    }
+
+    public static String StringFromFile(String file) {
+        try {
+            String result = "";
+            File fileObj = new File(file);
+            Scanner fileScanner = new Scanner(fileObj);
+            while (fileScanner.hasNextLine()) {
+                result += fileScanner.nextLine() + "\n";
+            }
+            fileScanner.close();
+            return result;
+        } catch (Exception e) {
+            return null;
+        }
     }
 }

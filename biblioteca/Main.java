@@ -42,6 +42,7 @@ class Main {
             System.out.println(resultado_do_input);
         }
 
+        leitor_de_input.close();
         Main.despedida();
     }
 }
