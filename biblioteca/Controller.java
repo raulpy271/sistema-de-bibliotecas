@@ -81,10 +81,25 @@ public class Controller {
         if (argumentos.length == argumentos_necessarios) {
             String tipo = argumentos[0];
             String valor_para_pesquisar = argumentos[1];
+            Livro[] books;
             switch (tipo) {
                 case "assunto":
-                    Livro[] books = biblioteca.searchLivro("", valor_para_pesquisar, "", 0);
+                    books = biblioteca.searchLivro("", valor_para_pesquisar, "", 0);
                     return View.books(books);
+                case "titulo":
+                    books = biblioteca.searchLivro(valor_para_pesquisar, "", "", 0);
+                    return View.books(books);
+                case "autor":
+                    books = biblioteca.searchLivro("", "", valor_para_pesquisar, 0);
+                    return View.books(books);
+                case "ano": 
+                    try {
+                        int ano = Integer.parseInt(valor_para_pesquisar);
+                        books = biblioteca.searchLivro("", "", "", ano);
+                        return View.books(books);
+                    } catch (NumberFormatException e) {
+                        return "Não foi possivel fazer parser do ano";
+                    }
                 default:
                     return "Este tipo de pesquisa não é suportado";
             }
