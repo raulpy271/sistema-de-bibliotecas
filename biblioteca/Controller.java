@@ -72,17 +72,23 @@ public class Controller {
     public String editLivro(String[] argumentos) {
         int argumentos_necessarios = 7;
         if (argumentos.length >= argumentos_necessarios) {
-            String isbn = argumentos[0];
-            int ano_publicacao = Integer.parseInt(argumentos[1]);
-            int num_paginas = Integer.parseInt(argumentos[2]);
-            int num_estante = Integer.parseInt(argumentos[3]);
-            String autor = argumentos[4];
-            String titulo = argumentos[5];
-            String[] categorias = Arrays.copyOfRange(argumentos, 6, argumentos.length);
-            this.biblioteca.editLivro(
-                isbn, ano_publicacao, num_paginas, num_estante, autor, titulo, categorias
-            );
-            return "Livro editado com sucesso!";
+            try {
+                String isbn = argumentos[0];
+                int ano_publicacao = Integer.parseInt(argumentos[1]);
+                int num_paginas = Integer.parseInt(argumentos[2]);
+                int num_estante = Integer.parseInt(argumentos[3]);
+                String autor = argumentos[4];
+                String titulo = argumentos[5];
+                String[] categorias = Arrays.copyOfRange(argumentos, 6, argumentos.length);
+                this.biblioteca.editLivro(
+                    isbn, ano_publicacao, num_paginas, num_estante, autor, titulo, categorias
+                );
+                return "Livro editado com sucesso!";
+            } catch (NumberFormatException e) {
+                return "Erro ao fazer parser de um dos números";
+            } catch (RuntimeException e) {
+                return e.getMessage();
+            }
         } else {
             return "Não foram adicionados argumentos suficientes";
         }
