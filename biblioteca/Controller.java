@@ -50,13 +50,19 @@ public class Controller {
     public String addItem(String[] argumentos) {
         int argumentos_necessarios = 2;
         if (argumentos.length >= argumentos_necessarios) {
-            String isbn = argumentos[0];
-            int quantidade_itens = Integer.parseInt(argumentos[1]);
-            if (biblioteca.getLivro(isbn) != null) {
-                this.biblioteca.createItens(isbn, quantidade_itens);
-                return "Itens inseridos com sucesso!";
-            } else {
-                return "Não existe livros com o isbn digitado";
+            try {
+                String isbn = argumentos[0];
+                int quantidade_itens = Integer.parseInt(argumentos[1]);
+                if (quantidade_itens <= 0) {
+                    return "A quantidade deve ser maior que zero";
+                } else if (biblioteca.getLivro(isbn) != null) {
+                    this.biblioteca.createItens(isbn, quantidade_itens);
+                    return "Itens inseridos com sucesso!";
+                } else {
+                    return "Não existe livros com o isbn digitado";
+                }
+            } catch (NumberFormatException e) {
+                return "Erro ao fazer parser de quantidade de itens";
             }
         } else {
             return "Não foram adicionados argumentos suficientes";
