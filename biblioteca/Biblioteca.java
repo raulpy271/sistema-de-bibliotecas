@@ -223,6 +223,40 @@ public class Biblioteca {
         }
     }
 
+    public boolean checkRemoveLivro(String isbn) {
+        for (int i = 0; i < MAX_ITENS; i++) {
+            if (
+                    this.itensRepo[i] != null &&
+                    this.itensRepo[i].getISBN().equals(isbn) &&
+                    this.itensRepo[i].getStatus() != Status.StatusEnum.DISPONIVEL) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    private void removeItensOf(String isbn) {
+        for (int i = 0; i < MAX_ITENS; i++) {
+            if (
+                    this.itensRepo[i] != null &&
+                    this.itensRepo[i].getISBN().equals(isbn)) {
+                this.itensRepo[i] = null;
+            }
+        }
+    }
+
+    public void removeLivro(String isbn) {
+        for (int i = 0; i < MAX_LIVROS; i++) {
+            if (
+                    this.livrosRepo[i] != null &&
+                    this.livrosRepo[i].getISBN().equals(isbn)) {
+                this.livrosRepo[i] = null;
+                break;
+            }
+        }
+        removeItensOf(isbn);
+    }
+
     public void checkoutLivro(int itemID, int contaID) {
         Conta conta = this.getConta(contaID);
         Item item = this.getItem(itemID);

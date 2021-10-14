@@ -12,6 +12,7 @@ public class Commands {
     public static final String CHECK_ATRASO = "check_atraso";
     public static final String ITENS_OF_THIS_USER = "itens_of_this_user";
     public static final String REMOVE_ITEM = "remove_item";
+    public static final String REMOVE_LIVRO = "remove_livro";
 
     public static final String CHECKOUT = "checkout";
     public static final String DEVOLVER = "devolver";
@@ -33,5 +34,6 @@ public class Commands {
         ADD_ITEM,
         EDIT_LIVRO,
         REMOVE_ITEM,
+        REMOVE_LIVRO,
     };
 }

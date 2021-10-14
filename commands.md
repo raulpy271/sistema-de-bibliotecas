@@ -14,6 +14,8 @@ ADD_USER <tipo:membro|bibliotecario> <nome> <endereço> <senha>
 
 REMOVE_USER <user_id>
 
+REMOVE_LIVRO <isbn>
+
 WHO_DO_CHECKOUT <item_id>
 
 ITENS_OF_THIS_USER <user_id>

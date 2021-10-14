@@ -191,7 +191,25 @@ public class Controller {
         } else {
             return "Não foram adicionados argumentos suficientes";
         }
+    }
 
+    public String removeLivro(String[] argumentos) {
+        int argumentos_necessarios = 1;
+        if (argumentos.length == argumentos_necessarios) {
+            String isbn = argumentos[0];
+            if (biblioteca.getLivro(isbn) != null) {
+                if (biblioteca.checkRemoveLivro(isbn)) {
+                    biblioteca.removeLivro(isbn);
+                    return "O livro juntamente com seus itens foram removidos";
+                } else {
+                    return "Impossível remover. Todos os itens precisam não emprestados/reservados";
+                }
+            } else {
+                return "Não existe livros com esse isbn";
+            }
+        } else {
+            return "Não foram adicionados argumentos suficientes";
+        }
     }
 
     public String checkout(String[] argumentos) {
@@ -384,6 +402,8 @@ public class Controller {
                 return this.addUser(argumentos);
             case Commands.REMOVE_USER:
                 return this.removeUser(argumentos);
+            case Commands.REMOVE_LIVRO:
+                return this.removeLivro(argumentos);
             case Commands.REMOVE_ITEM:
                 return this.removeItem(argumentos);
             case Commands.LOGGED_INFO:
