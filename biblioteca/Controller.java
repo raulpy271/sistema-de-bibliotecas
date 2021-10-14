@@ -336,13 +336,19 @@ public class Controller {
     }
 
     public String lidaComInputDoUsuario(String input) {
+        String[] argumentos;
         String[] comando_e_argumentos = Utils.divideArgumentos(input);
         String comando = comando_e_argumentos[0];
+        int numberOfArgs = Utils.countNotNull(comando_e_argumentos);
         if (!permission.canAcess(comando)) {
             return "Usuário não tem permissão de executar esse comando.";
+        } else if (numberOfArgs == 0) {
+            return "Digite o comando...";
+        } else if (numberOfArgs == 1) {
+            argumentos = new String[0];
+        } else {
+            argumentos = Arrays.copyOfRange(comando_e_argumentos, 1, numberOfArgs);
         }
-        String[] argumentos = 
-            Arrays.copyOfRange(comando_e_argumentos, 1, Utils.countNotNull(comando_e_argumentos));
         switch (comando) {
             case Commands.LOGIN:
                 return this.login(argumentos);
