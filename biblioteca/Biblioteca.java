@@ -34,15 +34,20 @@ public class Biblioteca {
             String titulo, 
             String[] categorias
             ) {
-        Livro livro = new Livro();
-        livro.setISBN(isbn);
-        livro.setAutor(autor);
-        livro.setPublicacao(ano_publicacao);
-        livro.setTitulo(titulo);
-        livro.setPaginas(num_paginas);
-        livro.setNumEstante(num_estante);
-        livro.setCategoria(categorias);
-        this.addLivro(livro);
+        Livro livro = getLivro(isbn);
+        if (livro == null) {
+            livro = new Livro();
+            livro.setISBN(isbn);
+            livro.setAutor(autor);
+            livro.setPublicacao(ano_publicacao);
+            livro.setTitulo(titulo);
+            livro.setPaginas(num_paginas);
+            livro.setNumEstante(num_estante);
+            livro.setCategoria(categorias);
+            this.addLivro(livro);
+        } else {
+            throw new RuntimeException("Este livro já existe");
+        }
     }
 
     public void createItens(String isbn, int quantidade_de_itens) {
